@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 function App() {
@@ -28,12 +27,15 @@ function App() {
 
   }
 
+  
   const toggleMode = () => {
+    // document.body.classList.add("border-2px")
+    // cls.target.style.border = "5px";
     if (mode === 'dark') {
       setmode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light Mode has been enabled", "success")
-    } else if (mode) {
+    } else  {
       setmode('dark')
       document.body.style.backgroundColor = '#212529';
       showAlert("Dark Mode has been enabled", "success")
@@ -41,17 +43,16 @@ function App() {
 
     }
   }
-  const [color, setColor] = useState("red");
 
   function buttonPressed(color) {
-    setColor(color);
-    document.body.style.backgroundColor = color;
-    setmode('light');
+    // setColor(color);
+    // document.body.style.backgroundColor = color;
+    // setmode('light');
   }
   return (
     <>
         <Router>
-      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} color={color} buttonPressed={buttonPressed} />
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}  buttonPressed={buttonPressed} />
       <Alert alert={alert} />
       <div className="container my-3">
           <Switch>
@@ -59,7 +60,7 @@ function App() {
               <TextForm heading="Enter the text to analyze below" mode={mode} showAlert={showAlert} />
             </Route>
             <Route exact path="/about">
-              <About />
+              <About mode={mode}/>
             </Route>
           </Switch>
           {/* <TextForm heading = "Enter the text to analyze below" mode = {mode} showAlert = {showAlert}/> */}
